@@ -22,12 +22,12 @@ export class Presenter {
                 break;
             case UPDATE_RESPONSE:
                 this.response.send({
-                    entries: response
+                    entries: [response]
                 });
                 break;
             case DESTROY_RESPONSE:
                 this.response.send({
-                    destroyed: response
+                    destroyed: [response]
                 });
                 break;
             case ERROR_RESPONSE:

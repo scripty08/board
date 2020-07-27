@@ -8,14 +8,14 @@ export class Repository extends BaseRepository {
     }
 
     async read(query) {
-        return await this.model.findOne({ assignment: query.assignment });
+        return await this.model.find({ assignment: query.assignment });
     }
 
     async update(query) {
         return await this.model.findOneAndUpdate(
-            { assignment: query.assignment },
-            { placements: query.placements },
-            { new: true }
+            { assignment: query.assignment},
+            { tasks: query.tasks, columns: query.columns, columnOrder: query.columnOrder },
+            { new: true, upsert: true }
         );
     }
 

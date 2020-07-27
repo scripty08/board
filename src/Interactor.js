@@ -25,20 +25,16 @@ export class Interactor {
 
             case 'update':
                 try {
-                    const update = await this.request.body.map(async (rec) => {
-                        return await this.repository.update(rec);
-                    });
-                    return await this.presenter.present({ code: UPDATE_RESPONSE, response: await Promise.all(update) });
+                    const update = await this.repository.update(this.request.body);
+                    return await this.presenter.present({ code: UPDATE_RESPONSE, response: update });
                 } catch (e) {
                     return await this.presenter.present({ code: ERROR_RESPONSE, message: e });
                 }
 
             case 'destroy':
                 try {
-                    const destroy = await this.request.body.map(async (rec) => {
-                        return await this.repository.destroy(rec);
-                    });
-                    return await this.presenter.present({ code: DESTROY_RESPONSE, response: await Promise.all(destroy) });
+                    const destroy = await this.repository.destroy(this.request.body);
+                    return await this.presenter.present({ code: DESTROY_RESPONSE, response: destroy });
                 } catch (e) {
                     return await this.presenter.present({ code: ERROR_RESPONSE, message: e });
                 }

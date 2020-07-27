@@ -1,1 +1,2 @@
-export * from './ModulesController';
+import BoardController from './Controller';
+export default BoardController;

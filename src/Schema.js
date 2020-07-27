@@ -1,4 +1,6 @@
 export const Schema = {
-    placements: Array,
-    assignment: String
+    assignment: String,
+    tasks: Object,
+    columns: Object,
+    columnOrder: Array
 };
