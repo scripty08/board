@@ -51,15 +51,22 @@ export class Interactor {
 
                     const tasks = this.request.body.tasks;
                     let bla = [];
+                    let query;
 
                     Object.keys(tasks).forEach(async (key) => {
-                        let query = {
+                        query = {
                             _id: key,
-                            ...task[key]
+                            ...tasks[key]
                         };
 
+                        console.log(query, ' query ---------------------- ');
                         await this.cardsRepository.update(query);
                     });
+
+
+
+
+
 
                     return await this.presenter.present({ code: UPDATE_RESPONSE, response: updatedBoards });
                 } catch (e) {
