@@ -1,6 +1,6 @@
 {
   "name": "@scripty/board",
-  "version": "0.1.14-2",
+  "version": "0.1.14-3",
   "author": "Danijel Garic",
   "license": "MIT",
   "description": "authentication wrapper for passport local strategy.",
