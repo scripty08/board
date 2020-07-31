@@ -17,7 +17,7 @@ export class Presenter {
         switch (code) {
             case READ_RESPONSE:
                 this.response.send({
-                    entries: response
+                    entries: [response]
                 });
                 break;
             case UPDATE_RESPONSE:

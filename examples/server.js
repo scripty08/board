@@ -1,7 +1,7 @@
 import { Server, IndexController } from '@scripty/server';
 import { Logger } from '@scripty/logger';
 import { mongo } from '@scripty/mongo';
-import { Controller } from '../src';
+import BoardController  from '../src';
 import dotenv from 'dotenv'
 
 const init = async () => {
@@ -26,7 +26,7 @@ const init = async () => {
     await server.setDatabase(mongoose);
 
     await server.addController(
-        new Controller(),
+        new BoardController(),
         new IndexController({ title: 'board' })
     );
 

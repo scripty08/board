@@ -1,14 +1,22 @@
 import { BaseRepository } from './BaseRepository';
 
-export class Repository extends BaseRepository {
+export default class CardsRepository extends BaseRepository {
 
     constructor(requestSchema, db, collection) {
         super(requestSchema, db, collection);
         this.db = db;
     }
 
-    async read(query) {
-        return await this.model.find({ assignment: query.assignment });
+    async read(ids) {
+        try {
+            let data = await this.model.find({
+                '_id': { $in: ids}
+            });
+            return data;
+        } catch (e) {
+            console.log(e, '  e---------------------- ');
+        }
+
     }
 
     async update(query) {
