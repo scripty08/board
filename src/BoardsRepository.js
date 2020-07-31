@@ -14,7 +14,7 @@ export default class BoardsRepository extends BaseRepository {
     async update(query) {
         return await this.model.findOneAndUpdate(
             { assignment: query.assignment},
-            { tasks: query.tasks, columns: query.columns, columnOrder: query.columnOrder },
+            { columns: query.columns, columnOrder: query.columnOrder },
             { new: true, upsert: true }
         );
     }

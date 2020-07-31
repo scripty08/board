@@ -21,8 +21,8 @@ export default class CardsRepository extends BaseRepository {
 
     async update(query) {
         return await this.model.findOneAndUpdate(
-            { assignment: query.assignment},
-            { tasks: query.tasks, columns: query.columns, columnOrder: query.columnOrder },
+            { _id: query._id},
+            { type: query.type, content: query.content },
             { new: true, upsert: true }
         );
     }

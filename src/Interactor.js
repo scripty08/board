@@ -46,7 +46,21 @@ export class Interactor {
 
             case 'update':
                 try {
+
                     const updatedBoards = await this.boardsRepository.update(this.request.body);
+
+                    const tasks = this.request.body.tasks;
+                    let bla = [];
+
+                    Object.keys(tasks).forEach(async (key) => {
+                        let query = {
+                            _id: key,
+                            ...task[key]
+                        };
+
+                        await this.cardsRepository.update(query);
+                    });
+
                     return await this.presenter.present({ code: UPDATE_RESPONSE, response: updatedBoards });
                 } catch (e) {
                     return await this.presenter.present({ code: ERROR_RESPONSE, message: e });
