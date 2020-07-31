@@ -31,8 +31,14 @@ export class Interactor {
 
                 const cards = await this.cardsRepository.read(ids);
 
-                boards.tasks = cards;
-                console.log(boards, '  ---------------------- ');
+                let result = {};
+
+                cards.forEach((rec) => {
+                    result[rec._id] = rec
+                });
+
+                boards.tasks = result;
+
                 return await this.presenter.present({ code: READ_RESPONSE, response: boards });
                 } catch (e) {
                     return await this.presenter.present({ code: ERROR_RESPONSE, message: e });
