@@ -1,15 +1,12 @@
-import { Presenter } from './Presenter';
-import { BoardsSchema, CardsSchema } from './Schema';
-import { Interactor } from './Interactor';
-import BoardsRepository from './BoardsRepository';
-import CardsRepository from './CardsRepository';
+import { BoardsSchema } from '../schemas/BoardsSchema';
+import { Presenter } from '../usecase/crudBoards/Presenter';
+import { Interactor } from '../usecase/crudBoards/Interactor';
+import BoardsRepository from '../repository/BoardsRepository';
 
-export default class Controller {
+export class BoardsController {
 
     init(server, router) {
-
         this.boardsRepository = new BoardsRepository(BoardsSchema, server.db, 'boards');
-        this.cardsRepository = new CardsRepository(CardsSchema, server.db, 'cards');
 
         router.get('/boards/read', this.readAction.bind(this));
         router.post('/boards/update', this.updateAction.bind(this));
@@ -19,19 +16,19 @@ export default class Controller {
 
     readAction(req, res) {
         const presenter = new Presenter(res);
-        const interactor = new Interactor(req, presenter, this.boardsRepository, this.cardsRepository);
+        const interactor = new Interactor(req, presenter, this.boardsRepository);
         return interactor.run('read');
     }
 
     updateAction(req, res) {
         const presenter = new Presenter(res);
-        const interactor = new Interactor(req, presenter, this.boardsRepository, this.cardsRepository);
+        const interactor = new Interactor(req, presenter, this.boardsRepository);
         return interactor.run('update');
     }
 
     destroyAction(req, res) {
         const presenter = new Presenter(res);
-        const interactor = new Interactor(req, presenter, this.boardsRepository, this.cardsRepository);
+        const interactor = new Interactor(req, presenter, this.boardsRepository);
         return interactor.run('destroy');
     }
 }

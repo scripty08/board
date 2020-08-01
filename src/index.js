@@ -1,2 +1,2 @@
-import BoardController from './Controller';
-export default BoardController;
+export * from './controller/BoardsController';
+export * from './controller/CardsController';

@@ -1,7 +1,8 @@
 import { Server, IndexController } from '@scripty/server';
 import { Logger } from '@scripty/logger';
 import { mongo } from '@scripty/mongo';
-import BoardController  from '../src';
+import { BoardsController }  from '../src';
+import { CardsController }  from '../src';
 import dotenv from 'dotenv'
 
 const init = async () => {
@@ -24,13 +25,13 @@ const init = async () => {
     const mongoose = await mongo(mongoConfig);
 
     await server.setDatabase(mongoose);
+    await server.addController(new BoardsController());
+    await server.addController(new CardsController());
+    await server.addController(new IndexController({ title: 'board' }));
 
-    await server.addController(
-        new BoardController(),
-        new IndexController({ title: 'board' })
-    );
 
     server.start(3011);
+    Logger.info('Server startet: : http://localhost:3011')
 };
 
 init().catch((err) => {

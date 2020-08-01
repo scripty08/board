@@ -13,7 +13,8 @@
   "main": "src/index.js",
   "repository": "https://github.com/scripty08/board",
   "scripts": {
-    "start": "nodemon --no-warnings --es-module-specifier-resolution=node ./examples/server.js"
+    "start": "nodemon --no-warnings --es-module-specifier-resolution=node ./examples/server.js",
+    "prerelease": "npm version prerelease && npm publish"
   },
   "dependencies": {
     "@scripty/logger": "^0.1.0"

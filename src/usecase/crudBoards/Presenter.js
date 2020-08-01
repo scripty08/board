@@ -4,7 +4,7 @@ import {
     UPDATE_RESPONSE,
     DESTROY_RESPONSE,
     ERROR_RESPONSE,
-} from './Constants';
+} from '../../base/BaseConstants';
 
 export class Presenter {
     constructor(response) {
@@ -17,7 +17,7 @@ export class Presenter {
         switch (code) {
             case READ_RESPONSE:
                 this.response.send({
-                    entries: [response]
+                    entries: response
                 });
                 break;
             case UPDATE_RESPONSE:

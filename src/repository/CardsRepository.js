@@ -1,4 +1,5 @@
-import { BaseRepository } from './BaseRepository';
+import { BaseRepository } from '../base/BaseRepository';
+import { Logger } from '@scripty/logger';
 
 export default class CardsRepository extends BaseRepository {
 
@@ -7,16 +8,23 @@ export default class CardsRepository extends BaseRepository {
         this.db = db;
     }
 
-    async read(ids) {
+    async find(ids) {
         try {
-            let data = await this.model.find({
+            return await this.model.find({
                 '_id': { $in: ids}
             });
-            return data;
         } catch (e) {
-            console.log(e, '  e---------------------- ');
+            Logger.error(e);
         }
 
+    }
+
+    async read(query) {
+        try {
+            return await this.model.find(query);
+        } catch (e) {
+            Logger.error(e);
+        }
     }
 
     async update(query) {

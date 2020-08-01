@@ -1,4 +1,4 @@
-import { BaseRepository } from './BaseRepository';
+import { BaseRepository } from '../base/BaseRepository';
 
 export default class BoardsRepository extends BaseRepository {
 
@@ -8,7 +8,7 @@ export default class BoardsRepository extends BaseRepository {
     }
 
     async read(query) {
-        return await this.model.findOne({ assignment: query.assignment });
+        return await this.model.find({ assignment: query.assignment });
     }
 
     async update(query) {

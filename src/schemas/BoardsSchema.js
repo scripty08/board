@@ -4,8 +4,3 @@ export const BoardsSchema = {
     columns: Object,
     columnOrder: Array
 };
-
-export const CardsSchema = {
-    type: String,
-    content: Object
-};
