@@ -22,7 +22,7 @@ export class Presenter {
                 break;
             case UPDATE_RESPONSE:
                 this.response.send({
-                    updated: [response]
+                    entries: [response]
                 });
                 break;
             case DESTROY_RESPONSE:

@@ -32,8 +32,12 @@ export class Interactor {
 
             case 'update':
                 try {
-                    const updatedCards = await this.cardsRepository.update(this.request.body);
-                    return await this.presenter.present({ code: UPDATE_RESPONSE, response: updatedCards });
+
+                    const updatedCards = this.request.body.cards.map(async (card) => {
+                         return await this.cardsRepository.update(card);
+                    })
+
+                    return await this.presenter.present({ code: UPDATE_RESPONSE, response: Promise.all(updatedCards) });
                 } catch (e) {
                     return await this.presenter.present({ code: ERROR_RESPONSE, message: e });
                 }
