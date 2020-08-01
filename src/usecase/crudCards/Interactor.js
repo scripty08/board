@@ -17,7 +17,7 @@ export class Interactor {
         switch (command) {
             case 'find':
                 try {
-                    const cards = await this.cardsRepository.find(this.request.query);
+                    const cards = await this.cardsRepository.find(this.request.body);
                     return await this.presenter.present({ code: READ_RESPONSE, response: cards });
                 } catch (e) {
                     return await this.presenter.present({ code: ERROR_RESPONSE, message: e });
