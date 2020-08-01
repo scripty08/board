@@ -6,13 +6,19 @@ import CardsRepository from '../repository/CardsRepository';
 export class CardsController {
 
     init(server, router) {
-        console.log('asdf', '  ---------------------- ');
         this.cardsRepository = new CardsRepository(CardsSchema, server.db, 'cards');
 
+        router.get('/cards/find', this.findAction.bind(this));
         router.get('/cards/read', this.readAction.bind(this));
         router.post('/cards/update', this.updateAction.bind(this));
         router.get('/cards/destroy', this.destroyAction.bind(this));
         server.use(router);
+    }
+
+    findAction(req, res) {
+        const presenter = new Presenter(res);
+        const interactor = new Interactor(req, presenter, this.cardsRepository);
+        return interactor.run('find');
     }
 
     readAction(req, res) {
