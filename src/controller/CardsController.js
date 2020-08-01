@@ -8,7 +8,7 @@ export class CardsController {
     init(server, router) {
         this.cardsRepository = new CardsRepository(CardsSchema, server.db, 'cards');
 
-        router.get('/cards/find', this.findAction.bind(this));
+        router.post('/cards/find', this.findAction.bind(this));
         router.get('/cards/read', this.readAction.bind(this));
         router.post('/cards/update', this.updateAction.bind(this));
         router.get('/cards/destroy', this.destroyAction.bind(this));
