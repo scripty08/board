@@ -8,10 +8,10 @@ export default class CardsRepository extends BaseRepository {
         this.db = db;
     }
 
-    async find(ids) {
+    async find(query) {
         try {
             return await this.model.find({
-                '_id': { $in: ids}
+                '_id': { $in: query._ids}
             });
         } catch (e) {
             Logger.error(e);
