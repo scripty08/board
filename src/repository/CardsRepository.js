@@ -28,6 +28,9 @@ export default class CardsRepository extends BaseRepository {
     }
 
     async update(query) {
+        if (!query._id) {
+            query._id = new this.db.mongo.ObjectID();
+        }
         return await this.model.findOneAndUpdate(
             { _id: query._id},
             { type: query.type, content: query.content },

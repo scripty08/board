@@ -12,6 +12,9 @@ export default class BoardsRepository extends BaseRepository {
     }
 
     async update(query) {
+        if (!query._id) {
+            query._id = new this.db.mongo.ObjectID();
+        }
         return await this.model.findOneAndUpdate(
             { assignment: query.assignment},
             { columns: query.columns, columnOrder: query.columnOrder },
