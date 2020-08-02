@@ -11,7 +11,7 @@ export class CardsController {
         router.post('/cards/find', this.findAction.bind(this));
         router.get('/cards/read', this.readAction.bind(this));
         router.post('/cards/update', this.updateAction.bind(this));
-        router.get('/cards/destroy', this.destroyAction.bind(this));
+        router.post('/cards/destroy', this.destroyAction.bind(this));
         server.use(router);
     }
 
